@@ -1,0 +1,43 @@
+<resources>
+  <string name="app_name">TestStuff</string>
+
+  <string name="local_service_name">Local Service</string>
+
+  <string name="messenger_name">Messenger</string>
+
+  <string name="action_settings">Settings</string>
+
+
+
+
+
+  <string name="remote_service_started">Remote service has started</string>
+  <string name="remote_service_stopped">Remote service has stopped</string>
+  <string name="remote_service_connected">Connected to remote service</string>
+  <string name="remote_service_disconnected">Disconnected from remote service</string>
+  <string name="remote_call_failed">Failure calling remote service</string>
+  <string name="not_attached">Not attached.</string>
+
+  <string name="activity_content_provider">Content Provider</string>
+
+  <string name="activity_remote_service_binding">App/Service/Remote Service Binding</string>
+  <string name="remote_service_binding">This demonstrates how you can connect with a persistent
+        service running in another process.  Use the kill button to see what happens when
+        the process crashes.</string>
+  <string name="bind_service">Bind Service</string>
+  <string name="unbind_service">Unbind Service</string>
+  <string name="kill_process">Kill Process</string>
+
+  <string name="on_activity_result_name">onActivityResult Test</string>
+  <string name="on_activity_result_description">This tests Starting activities and seeing when the \'onActivityResult\' is called</string>
+  <string name="start_a">Start Activity A</string>
+  <string name="start_b">Start Activity B</string>
+  <string name="start_c">Start Activity C</string>
+
+  <string name="start_a_b">Start Activity A, then B immediately</string>
+
+
+  <string name="name">Activity</string>
+  <string name="stop">Stop</string>
+
+</resources>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools" package="name.hampton.mike.kotlin.playground">
+
+  <application
+          android:allowBackup="true"
+          android:icon="@mipmap/ic_launcher"
+          android:label="@string/app_name"
+          android:roundIcon="@mipmap/ic_launcher_round"
+          android:supportsRtl="true"
+          android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
+    <activity
+        android:name="name.hampton.mike.kotlin.playground.MainActivity"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.NoActionBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+
+    <activity
+        android:name="name.hampton.mike.kotlin.playground.onActivityResult.OnActivityResultMain"
+        android:label="@string/on_activity_result_name"
+        android:theme="@style/AppTheme.NoActionBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+
+    <activity
+        android:name="name.hampton.mike.kotlin.playground.onActivityResult.OnActivityResultA"
+        android:label="@string/start_a"
+        android:theme="@style/AppTheme.NoActionBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+      </intent-filter>
+    </activity>
+
+    <activity
+        android:name="name.hampton.mike.kotlin.playground.onActivityResult.OnActivityResultB"
+        android:label="@string/start_b"
+        android:theme="@style/AppTheme.NoActionBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+      </intent-filter>
+    </activity>
+
+    <activity
+        android:name="name.hampton.mike.kotlin.playground.onActivityResult.OnActivityResultC"
+        android:label="@string/start_c"
+        android:theme="@style/AppTheme.NoActionBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+      </intent-filter>
+    </activity>
+
+
+    <activity
+            android:name="name.hampton.mike.kotlin.playground.localbinder.BindingActivity"
+            android:label="@string/local_service_name"
+            android:theme="@style/AppTheme.NoActionBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+
+    <activity
+        android:name="name.hampton.mike.kotlin.playground.messenger.ActivityMessenger"
+        android:label="@string/messenger_name"
+        android:theme="@style/AppTheme.NoActionBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+
+    <activity
+        android:name="name.hampton.mike.kotlin.playground.aidl.ActivityAidlClient"
+        android:label="@string/activity_remote_service_binding"
+        android:theme="@style/AppTheme.NoActionBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.SAMPLE_CODE" />
+      </intent-filter>
+    </activity>
+
+    <activity
+        android:name="name.hampton.mike.kotlin.playground.contentProvider.ContentProviderActivity"
+        android:label="@string/activity_content_provider"
+        android:theme="@style/AppTheme.NoActionBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.SAMPLE_CODE" />
+      </intent-filter>
+    </activity>
+
+    <service android:name="name.hampton.mike.kotlin.playground.localbinder.LocalService" />
+    <service android:name="name.hampton.mike.kotlin.playground.messenger.MessengerService" />
+
+    <service android:name="name.hampton.mike.kotlin.playground.aidl.RemoteService" android:process=":remote">
+      <intent-filter>
+        <!-- These are the interfaces supported by the service, which
+             you can bind to. -->
+        <action android:name="name.hampton.mike.kotlin.playground.aidl.IRemoteService" />
+        <action android:name="name.hampton.mike.kotlin.playground.aidl.ISecondary" />
+        <!-- This is an action code you can use to select the service
+             without explicitly supplying the implementation class. -->
+        <action android:name="name.hampton.mike.kotlin.playground.aidl.REMOTE_SERVICE" />
+      </intent-filter>
+    </service>
+
+    <provider
+        android:authorities="name.hampton.mike.kotlin.playground"
+        android:exported="true"
+        android:name="name.hampton.mike.kotlin.playground.contentProvider.ProtocolContentProvider"/>
+
+  </application>
+
+</manifest>
