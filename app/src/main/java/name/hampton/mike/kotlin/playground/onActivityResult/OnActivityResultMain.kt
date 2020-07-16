@@ -12,6 +12,12 @@ import name.hampton.mike.kotlin.playground.R
 import kotlin.random.Random
 
 /**
+ * External Activity.
+ */
+const val OTHER = "OTHER"
+const val OTHER_ACTION = "name.hampton.mike.kotlin.playground.app2.OTHER_ACTION"
+
+/**
  * This illustrates some lifecycle oddities we need to be aware of.
  *
  * This came out of the problem where the onActivityResult
@@ -33,16 +39,18 @@ class OnActivityResultMain : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.on_activity_result_main)
-        val startedFilter = IntentFilter(STARTED.format(A))
-        startedFilter.addAction(STARTED.format(B))
-        startedFilter.addAction(STARTED.format(C))
+        val startedFilter = IntentFilter(name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(A))
+        startedFilter.addAction(name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(B))
+        startedFilter.addAction(name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(C))
+        startedFilter.addAction(name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(OTHER))
         registerReceiver(startedBroadCastReceiver, startedFilter)
 
         val finishedFilter = IntentFilter(
-            FINISHED.format(A)
+            name.hampton.mike.kotlin.playground.otheractivitylib.FINISHED.format(A)
         )
-        finishedFilter.addAction(FINISHED.format(B))
-        finishedFilter.addAction(FINISHED.format(C))
+        finishedFilter.addAction(name.hampton.mike.kotlin.playground.otheractivitylib.FINISHED.format(B))
+        finishedFilter.addAction(name.hampton.mike.kotlin.playground.otheractivitylib.FINISHED.format(C))
+        finishedFilter.addAction(name.hampton.mike.kotlin.playground.otheractivitylib.FINISHED.format(OTHER))
         registerReceiver(finishedBroadCastReceiver, finishedFilter)
     }
 
@@ -84,6 +92,12 @@ class OnActivityResultMain : Activity() {
         start(activity)
     }
 
+    private fun startOtherProcess(@Suppress("UNUSED_PARAMETER") view: View) {
+        val activity = Intent(OTHER_ACTION)
+        start(activity)
+    }
+
+
     /**
      * This illustrates starting an activity, then immediately starting another.
      *
@@ -97,6 +111,57 @@ class OnActivityResultMain : Activity() {
     }
 
     /**
+     * This illustrates starting an activity, then immediately starting another.
+     *
+     * By looking at the log statements, we can see that the first activity does not have 'onCreate'
+     * called, until after the second activity exits.
+     *
+     */
+    fun startAOther(view: View) {
+        startA(view)
+        startOtherProcess(view)
+    }
+
+    /**
+     * This illustrates starting an activity, waiting for it to notify us that it started,
+     * starting a second activity, waiting for it to notify us that it started, then
+     * stopping the first activity - that is behind the second.
+     *
+     * By looking at the log statements, we can see that there is still no onActivityResult
+     * that is returned, until after the second activity exits.
+     *
+     */
+    fun startAWaitOtherWaitStopA(view: View) {
+        startA(view)
+        afterStartedTasks[name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(A)] = Runnable {
+            startOtherProcess(view)
+            afterStartedTasks[name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(OTHER)] = Runnable {
+                sendBroadcast(Intent(A))
+            }
+        }
+    }
+
+
+    /**
+     * This illustrates starting an activity, waiting for it to notify us that it started,
+     * starting a second activity, waiting for it to notify us that it started, then
+     * stopping the first activity - that is behind the second.
+     *
+     * By looking at the log statements, we can see that there is still no onActivityResult
+     * that is returned, until after the second activity exits.
+     *
+     */
+    fun startOtherWaitAWaitStopOther(view: View) {
+        startOtherProcess(view)
+        afterStartedTasks[name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(OTHER)] = Runnable {
+            startA(view)
+            afterStartedTasks[name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(A)] = Runnable {
+                sendBroadcast(Intent(OTHER))
+            }
+        }
+    }
+
+    /**
      * This illustrates starting an activity, waiting for it to notify us that it started,
      * starting a second activity, waiting for it to notify us that it started, then
      * stopping the first activity - that is behind the second.
@@ -107,9 +172,9 @@ class OnActivityResultMain : Activity() {
      */
     fun startAWaitBWaitStopA(view: View) {
         startA(view)
-        afterStartedTasks[STARTED.format(A)] = Runnable {
+        afterStartedTasks[name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(A)] = Runnable {
             startB(view)
-            afterStartedTasks[STARTED.format(B)] = Runnable {
+            afterStartedTasks[name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(B)] = Runnable {
                 sendBroadcast(Intent(A))
             }
         }
@@ -117,11 +182,11 @@ class OnActivityResultMain : Activity() {
 
     fun startAWaitBWaitCWaitStopB(view: View) {
         startA(view)
-        afterStartedTasks[STARTED.format(A)] = Runnable {
+        afterStartedTasks[name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(A)] = Runnable {
             startB(view)
-            afterStartedTasks[STARTED.format(B)] = Runnable {
+            afterStartedTasks[name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(B)] = Runnable {
                 startC(view)
-                afterStartedTasks[STARTED.format(C)] = Runnable {
+                afterStartedTasks[name.hampton.mike.kotlin.playground.otheractivitylib.STARTED.format(C)] = Runnable {
                     sendBroadcast(Intent(B))
                 }
             }

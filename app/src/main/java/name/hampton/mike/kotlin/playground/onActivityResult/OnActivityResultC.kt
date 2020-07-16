@@ -5,5 +5,5 @@ const val C = "C"
 /**
  * Created by michaelhampton on 7/15/20.
  */
-class OnActivityResultC : OnActivityResultBase(C) {
+class OnActivityResultC : name.hampton.mike.kotlin.playground.otheractivitylib.OnActivityResultBase(C) {
 }

@@ -5,5 +5,5 @@ const val A = "A"
 /**
  * Created by michaelhampton on 7/15/20.
  */
-class OnActivityResultA : OnActivityResultBase(A) {
+class OnActivityResultA : name.hampton.mike.kotlin.playground.otheractivitylib.OnActivityResultBase(A) {
 }

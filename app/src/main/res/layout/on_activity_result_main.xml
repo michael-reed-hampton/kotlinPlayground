@@ -19,8 +19,22 @@
 
     <Button
         android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Start A, B, C, Stop B"
-        android:onClick="startAWaitBWaitCWaitStopB"
+        android:text="Start A, Other"
+        android:onClick="startAOther"
+        >
+    </Button>
+
+    <Button
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Start A, wait..., start Other, wait..., Stop A"
+        android:onClick="startAWaitOtherWaitStopA"
+        >
+    </Button>
+
+    <Button
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Start Other, wait..., start A, wait..., Stop Other"
+        android:onClick="startOtherWaitAWaitStopOther"
         >
     </Button>
 
@@ -28,6 +42,13 @@
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="Start A, wait..., start B, wait..., Stop A"
         android:onClick="startAWaitBWaitStopA"
+        >
+    </Button>
+
+    <Button
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Start A, wait..., B, wait..., C, wait..., Stop B"
+        android:onClick="startAWaitBWaitCWaitStopB"
         >
     </Button>
 

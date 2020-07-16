@@ -1,4 +1,4 @@
-package name.hampton.mike.kotlin.playground.onActivityResult
+package name.hampton.mike.kotlin.playground.otheractivitylib
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import name.hampton.mike.kotlin.playground.R
 
 const val STARTED:String = "%s.isStarted"
 const val FINISHED:String = "%s.isFinished"
